@@ -9,7 +9,11 @@
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
 
-    <title>Hello, world!</title>
+    <!-- My Favicon -->
+    <link rel="icon" href="/img/icon_bmkg.ico" type="image/gif">
+
+    <!-- <title><?= $title; ?></title> -->
+    <title>Pelayanan Data Agroklimat</title>
 </head>
 
 <body>

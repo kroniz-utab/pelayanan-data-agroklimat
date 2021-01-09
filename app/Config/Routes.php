@@ -37,6 +37,10 @@ $routes->get('/input', 'Main::input'); // untuk ke layar input
 $routes->get('/monitor', 'Main::monitor'); // untuk ke layar monitor
 $routes->get('/about', 'Main::about'); // untuk menampilkan halaman about
 
+$routes->get('/input/get-form', 'Main::getForm');
+
+$routes->post('/input/save', 'Main::saveForm');
+
 /**
  * --------------------------------------------------------------------
  * Additional Routing

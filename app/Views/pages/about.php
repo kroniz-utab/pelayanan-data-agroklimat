@@ -7,9 +7,9 @@
         <div class="col">
             <h3 class="text-center text-uppercase font-weight-bold mt-4">This Is Our team</h3>
             <div class="row row-cols-1 row-cols-md-2 mt-3">
-                <div class="card mb-4 ml-2 mr-2" style="max-width: 540px;">
+                <div class="card mb-4 ms-2 me-2" style="max-width: 540px;">
                     <div class="row no-gutters">
-                        <div class="col-md-4">
+                        <div class="col-md-4 mt-2">
                             <img src="/img/ade.jpg" class="card-img profil">
                         </div>
                         <div class="col-md-8">
@@ -22,9 +22,9 @@
                         </div>
                     </div>
                 </div>
-                <div class="card mb-4 ml-2 mr-2" style="max-width: 540px;">
+                <div class="card mb-4 ms-2 me-2" style="max-width: 540px;">
                     <div class="row no-gutters">
-                        <div class="col-md-4">
+                        <div class="col-md-4 mt-2">
                             <img src="/img/dhitya.jpg" class="card-img profil">
                         </div>
                         <div class="col-md-8">
@@ -37,9 +37,9 @@
                         </div>
                     </div>
                 </div>
-                <div class="card mb-4 ml-2 mr-2" style="max-width: 540px;">
+                <div class="card mb-4 ms-2 me-2" style="max-width: 540px;">
                     <div class="row no-gutters">
-                        <div class="col-md-4">
+                        <div class="col-md-4 mt-2">
                             <img src="/img/adit.jpg" class="card-img profil">
                         </div>
                         <div class="col-md-8">
@@ -52,9 +52,9 @@
                         </div>
                     </div>
                 </div>
-                <div class="card mb-4 ml-2 mr-2" style="max-width: 540px;">
+                <div class="card mb-4 ms-2 me-2" style="max-width: 540px;">
                     <div class="row no-gutters">
-                        <div class="col-md-4">
+                        <div class="col-md-4 mt-2">
                             <img src="/img/adji.jpg" class="card-img profil">
                         </div>
                         <div class="col-md-8">

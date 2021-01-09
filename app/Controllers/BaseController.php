@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Controllers;
 
 /**
@@ -14,6 +15,9 @@ namespace App\Controllers;
  * @package CodeIgniter
  */
 
+use App\Models\EntryModel;
+use App\Models\StasiunModel;
+use App\Models\UtamaModel;
 use CodeIgniter\Controller;
 
 class BaseController extends Controller
@@ -41,6 +45,10 @@ class BaseController extends Controller
 		//--------------------------------------------------------------------
 		// E.g.:
 		// $this->session = \Config\Services::session();
+		$this->entryModel = new EntryModel();
+		$this->mainModel = new UtamaModel();
+		$this->stasiunModel = new StasiunModel();
+		$this->db = \Config\Database::connect();
+		session();
 	}
-
 }
