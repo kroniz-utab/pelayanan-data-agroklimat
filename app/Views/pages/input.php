@@ -41,15 +41,6 @@
                                 </select>
                             </div>
                             <div class="col-2">
-                                <h5 class="fs-6">Tanggal</h5>
-                                <select class="form-select <?= ($validation->hasError('tanggal')) ? 'is-invalid' : ''; ?>" name="tanggal">
-                                    <option selected>--- Tanggal ---</option>
-                                    <?php for ($i = 1; $i < 32; $i++) : ?>
-                                        <option value="<?= $i; ?>"><?= $i; ?></option>
-                                    <?php endfor; ?>
-                                </select>
-                            </div>
-                            <div class="col-2">
                                 <h5 class="fs-6">Jam Peng.</h5>
                                 <select class="form-select <?= ($validation->hasError('jpeng')) ? 'is-invalid' : ''; ?>" name="jpeng">
                                     <option selected>--- Jam Pengamatan ---</option>

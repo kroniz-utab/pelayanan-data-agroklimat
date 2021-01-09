@@ -33,13 +33,18 @@ $routes->setAutoRoute(true);
 // route since we don't have to scan directories.
 // $routes->get('/', 'Home::index');
 $routes->get('/', 'Main::index'); // untuk Main
+
+// kelompok INPUT
 $routes->get('/input', 'Main::input'); // untuk ke layar input
-$routes->get('/monitor', 'Main::monitor'); // untuk ke layar monitor
-$routes->get('/about', 'Main::about'); // untuk menampilkan halaman about
-
 $routes->get('/input/get-form', 'Main::getForm');
-
 $routes->post('/input/save', 'Main::saveForm');
+
+// Kelompok Monitor
+$routes->get('/monitor', 'Main::monitor'); // untuk ke layar monitor
+$routes->get('/monitor/list', 'Main::watch');
+$routes->get('/sta/(:segment)/per/(:segment)/ming/(:segment)', 'Main::detail/$1/$2/$3');
+
+$routes->get('/about', 'Main::about'); // untuk menampilkan halaman about
 
 /**
  * --------------------------------------------------------------------

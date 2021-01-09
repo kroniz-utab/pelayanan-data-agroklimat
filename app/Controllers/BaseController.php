@@ -18,6 +18,7 @@ namespace App\Controllers;
 use App\Models\EntryModel;
 use App\Models\StasiunModel;
 use App\Models\UtamaModel;
+use App\Models\WaktuModel;
 use CodeIgniter\Controller;
 
 class BaseController extends Controller
@@ -48,6 +49,7 @@ class BaseController extends Controller
 		$this->entryModel = new EntryModel();
 		$this->mainModel = new UtamaModel();
 		$this->stasiunModel = new StasiunModel();
+		$this->waktuModel = new WaktuModel();
 		$this->db = \Config\Database::connect();
 		session();
 	}

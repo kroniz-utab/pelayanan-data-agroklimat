@@ -13,27 +13,18 @@
                             <h3 class="mb-3">Input Data Agroklimat</h3>
                             <div class="col">
                                 <h5 class="fs-6">Stasiun</h5>
-                                <select name="staid" class="form-select" disabled>
-                                    <option value="<?= $stas; ?>"><?= $name; ?></option>
-                                </select>
+                                <input type="text" class="form-control" value="<?= $name; ?>" disabled>
+                                <input type="hidden" class="form-control" value="<?= $stas; ?>" name="staid">
                             </div>
                             <div class="col-2">
                                 <h5 class="fs-6">Periode</h5>
-                                <select name="period" class="form-select" disabled>
-                                    <option value="<?= $period; ?>"><?= $proman; ?></option>
-                                </select>
+                                <input type="text" class="form-control" value="<?= $proman; ?>" disabled>
+                                <input type="hidden" class="form-control" value="<?= $period; ?>" name="period">
                             </div>
                             <div class="col-2">
                                 <h5 class="fs-6">Minggu</h5>
-                                <select name="minggu" class="form-select" disabled>
-                                    <option value="<?= $minggu; ?>"><?= $minggu; ?></option>
-                                </select>
-                            </div>
-                            <div class="col-2">
-                                <h5 class="fs-6">Tanggal</h5>
-                                <select name="tanggal" class="form-select" disabled>
-                                    <option value="<?= $tanggal; ?>"><?= $tanggal; ?></option>
-                                </select>
+                                <input type="text" class="form-control" value="<?= $minggu; ?>" disabled>
+                                <input type="hidden" class="form-control" value="<?= $minggu; ?>" name="minggu">
                             </div>
                             <div class="col-2">
                                 <h5 class="fs-6">Jam Peng.</h5>
@@ -41,50 +32,59 @@
                                     <option value="<?= $jpeng; ?>"><?= $jampeng; ?></option>
                                 </select>
                             </div>
+                            <div class="col-2">
+                                <h5 class="fs-6">Tanggal</h5>
+                                <select class="form-select" name="tanggal" autofocus>
+                                    <option selected>--- Tanggal ---</option>
+                                    <?php foreach ($tanggal as $tg) : ?>
+                                        <option value="<?= $tg['tanggal']; ?>"><?= $tg['tanggal']; ?></option>
+                                    <?php endforeach; ?>
+                                </select>
+                            </div>
                         </div>
                         <div class="form-group row mt-5 mb-3">
                             <h5 class="fs-6 text-center mb-3"><strong>Temperatur</strong></h5>
                             <div class="col">
-                                <input type="text" class="form-control" name="bk" placeholder="Bola Kering">
+                                <input type="text" class="form-control <?= ($validation->hasError('bk')) ? 'is-invalid' : ''; ?>" name="bk" placeholder="Bola Kering">
                             </div>
                             <div class="col">
-                                <input type="text" class="form-control" name="bb" placeholder="Bola Basah">
+                                <input type="text" class="form-control <?= ($validation->hasError('bb')) ? 'is-invalid' : ''; ?>" name="bb" placeholder="Bola Basah">
                             </div>
                             <div class="col">
-                                <input type="text" class="form-control" name="tl" placeholder="<?= $tl; ?>">
+                                <input type="text" class="form-control <?= ($validation->hasError('tl')) ? 'is-invalid' : ''; ?>" name="tl" placeholder="<?= $tl; ?>">
                             </div>
                         </div>
                         <div class="form-group row my-3">
                             <h5 class="fs-6 text-center mb-3"><strong>Angin</strong></h5>
                             <div class="col">
-                                <input type="text" class="form-control" name="wd" placeholder="Arah Angin">
+                                <input type="text" class="form-control <?= ($validation->hasError('wd')) ? 'is-invalid' : ''; ?>" name="wd" placeholder="Arah Angin">
                             </div>
                             <div class="col">
-                                <input type="text" class="form-control" name="ws" placeholder="Kecepatan Angin">
+                                <input type="text" class="form-control <?= ($validation->hasError('ws')) ? 'is-invalid' : ''; ?>" name="ws" placeholder="Kecepatan Angin">
                             </div>
                             <div class="col">
-                                <input type="text" class="form-control" name="wsr" placeholder="Kecepatan Angin Rerata <?= ($jpeng == 1) ? '31' : (($jpeng == 2) ? '12' : '23'); ?>">
+                                <input type="text" class="form-control" name="wsr" placeholder="Kecepatan Angin Rerata <?= ($jpeng == 1) ? '31' : (($jpeng == 2) ? '12' : '23'); ?>"">
                             </div>
                         </div>
-                        <div class="form-group row my-3">
-                            <div class="col">
-                                <h5 class="fs-6 text-center mb-3"><strong>Lembab Nisbi</strong></h5>
-                                <input type="text" class="form-control" name="ln" placeholder="Lembab Nisbi">
+                        <div class=" form-group row my-3">
+                                <div class="col">
+                                    <h5 class="fs-6 text-center mb-3"><strong>Lembab Nisbi</strong></h5>
+                                    <input type="text" class="form-control <?= ($validation->hasError('ln')) ? 'is-invalid' : ''; ?>" name="ln" placeholder="Lembab Nisbi">
+                                </div>
+                                <div class="col">
+                                    <h5 class="fs-6 text-center mb-3"><strong><?= $ext1; ?></strong></h5>
+                                    <input type="text" class="form-control <?= ($validation->hasError('ext1')) ? 'is-invalid' : ''; ?>" name="ext1" placeholder="<?= $ext1; ?>">
+                                </div>
+                                <div class="col">
+                                    <h5 class="fs-6 text-center mb-3"><strong><?= $ext2; ?></strong></h5>
+                                    <input type="text" class="form-control <?= ($validation->hasError('ext2')) ? 'is-invalid' : ''; ?>" name="ext2" placeholder="<?= $ext2; ?>">
+                                </div>
                             </div>
-                            <div class="col">
-                                <h5 class="fs-6 text-center mb-3"><strong><?= $ext1; ?></strong></h5>
-                                <input type="text" class="form-control" name="ext1" placeholder="<?= $ext1; ?>">
+                            <div class="row mt-5 mb-3">
+                                <div class="col-12">
+                                    <button type="submit" class="btn btn-primary position-relative start-50">Save</button>
+                                </div>
                             </div>
-                            <div class="col">
-                                <h5 class="fs-6 text-center mb-3"><strong><?= $ext2; ?></strong></h5>
-                                <input type="text" class="form-control" name="ext1" placeholder="<?= $ext2; ?>">
-                            </div>
-                        </div>
-                        <div class="row mt-5 mb-3">
-                            <div class="col-12">
-                                <button type="submit" class="btn btn-primary position-relative start-50">Save</button>
-                            </div>
-                        </div>
                     </form>
                 </div>
             </div>
