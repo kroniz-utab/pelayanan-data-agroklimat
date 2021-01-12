@@ -38,6 +38,7 @@ $routes->get('/', 'Main::index'); // untuk Main
 $routes->get('/input', 'Main::input'); // untuk ke layar input
 $routes->get('/input/get-form', 'Main::getForm');
 $routes->post('/input/save', 'Main::saveForm');
+$routes->post('/fetch_tgl', 'Dynamic::fetch');
 
 // Kelompok Monitor
 $routes->get('/monitor', 'Main::monitor'); // untuk ke layar monitor

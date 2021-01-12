@@ -27,19 +27,14 @@
                                 <input type="hidden" class="form-control" value="<?= $minggu; ?>" name="minggu">
                             </div>
                             <div class="col-2">
-                                <h5 class="fs-6">Jam Peng.</h5>
-                                <select name="jpeng" class="form-select" disabled>
-                                    <option value="<?= $jpeng; ?>"><?= $jampeng; ?></option>
-                                </select>
+                                <h5 class="fs-6">Tanggal</h5>
+                                <input type="text" class="form-control" value="<?= $tanggal; ?>" disabled>
+                                <input type="hidden" class="form-control" value="<?= $tanggal; ?>" name="tanggal">
                             </div>
                             <div class="col-2">
-                                <h5 class="fs-6">Tanggal</h5>
-                                <select class="form-select" name="tanggal" autofocus>
-                                    <option selected>--- Tanggal ---</option>
-                                    <?php foreach ($tanggal as $tg) : ?>
-                                        <option value="<?= $tg['tanggal']; ?>"><?= $tg['tanggal']; ?></option>
-                                    <?php endforeach; ?>
-                                </select>
+                                <h5 class="fs-6">Jam Peng.</h5>
+                                <input type="text" class="form-control" value="<?= $jampeng; ?>" disabled>
+                                <input type="hidden" class="form-control" value="<?= $jampeng; ?>" name="jampeng">
                             </div>
                         </div>
                         <div class="form-group row mt-5 mb-3">

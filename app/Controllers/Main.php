@@ -6,12 +6,6 @@ use App\Models\EntryModel;
 
 class Main extends BaseController
 {
-    // public function coba_duls()
-    // {
-    //     $entry = $this->db->query('SELECT * FROM entry')->getResultArray();
-    //     $entry = $this->entryModel->findAll();
-    //     dd($entry);
-    // }
     public function index()
     {
         $data = [
@@ -30,7 +24,8 @@ class Main extends BaseController
             'title' => 'Input Data',
             'cat' => 2,
             'stas' => $stas,
-            'validation' => \Config\Services::validation()
+            'validation' => \Config\Services::validation(),
+            'fail' => false
         ];
         return view('pages/input', $data);
     }
@@ -61,26 +56,36 @@ class Main extends BaseController
 
     public function getForm()
     {
+        $stas = $this->request->getVar('stasiun');
+        $period = $this->request->getVar('periode');
+        $minggu = $this->request->getVar('minggu');
+        $tanggal = $this->request->getVar('tanggal');
+        $jpeng = $this->request->getVar('jpeng');
+
+        if ($jpeng == 1) {
+            $target = 'entry1id';
+        } elseif ($jpeng == 2) {
+            $target = 'entry2id';
+        } else {
+            $target = 'entry3id';
+        }
+
+        $qcheck = 'SELECT * from utama where staid = ? and period = ? and no_ming = ? and tanggal = ?';
+        $rescheck = $this->db->query($qcheck, [$stas, $period, $minggu, $tanggal])->getResultArray();
+
         if (!$this->validate([
             'stasiun' => 'required|numeric',
             'periode' => 'required|numeric',
             'minggu' => 'required|numeric',
-            'jpeng' => 'required|numeric'
+            'jpeng' => 'required|numeric',
+            'tanggal' => 'required|numeric'
         ])) {
             $validation = \Config\Services::validation();
             return redirect()->to('/input')->withInput()->with('validation', $validation);
+        } elseif ($rescheck != null and $rescheck[0][$target] != 1) {
+            session()->setFlashData('fail', 'Data telah terdaftar, tidak dapat menambahkan data lagi.');
+            return redirect()->to('/input');
         }
-
-        $stas = $this->request->getVar('stasiun');
-        $period = $this->request->getVar('periode');
-        $minggu = $this->request->getVar('minggu');
-        $jpeng = $this->request->getVar('jpeng');
-
-        // $tanggal = $this->waktuModel->where('minggu', $minggu)->findAll();
-        $tgl_qr = 'SELECT tanggal from waktu where minggu = ? order by tanggal ASC';
-        $tanggal = $this->db->query($tgl_qr, $minggu)->getResultArray();
-        // dd($tanggal);
-
 
         $namstas = $this->stasiunModel->find($stas);
 
@@ -236,6 +241,7 @@ class Main extends BaseController
                 $target => $id_ent[0]['id']
             ]);
         }
+        session()->setFlashData('success', 'Data telah berhasil disimpan.');
         return redirect()->to('/input');
     }
 
@@ -298,37 +304,96 @@ class Main extends BaseController
             'minggu' => $minggu
         ])->findAll();
 
-        $dt_entry1 = [];
-        $dt_entry2 = [];
-        $dt_entry3 = [];
-
-        foreach ($data_utama as $du) {
-            $entry1 = $this->entryModel->where([
-                'id' => $du['entry1id']
-            ])->findAll();
-            array_push($dt_entry1, $entry1[0]);
-
-            $entry2 = $this->entryModel->where([
-                'id' => $du['entry2id']
-            ])->findAll();
-            array_push($dt_entry2, $entry2[0]);
-
-            $entry3 = $this->entryModel->where([
-                'id' => $du['entry3id']
-            ])->findAll();
-            array_push($dt_entry3, $entry3[0]);
+        $tgl = [];
+        foreach ($hari as $h) {
+            array_push($tgl, $h['tanggal']);
         }
-        // dd($dt_entry1);
-        // foreach ($data_utama as $dtu) {
-        //     if ($dtu['tanggal'] == '1') {
-        //         $entry1id = $dtu['entry1id'];
-        //         $entry2id = $dtu['entry2id'];
-        //         $entry3id = $dtu['entry3id'];
-        //     }
-        //     dd($entry1id);
-        // }
-        // die();
 
+        // id entrynya modal untuk ngambil data
+        $identry1 = [];
+        $identry2 = [];
+        $identry3 = [];
+
+        foreach ($tgl as $t) {
+            $dttama = $this->mainModel->where([
+                'staid' => $staid,
+                'period' => $period,
+                'no_ming' => $minggu,
+                'tanggal' => $t
+            ])->findAll();
+
+            if ($dttama != null) {
+                foreach ($dttama as $dtt) {
+                    array_push($identry1, $dtt['entry1id']);
+                    array_push($identry2, $dtt['entry2id']);
+                    array_push($identry3, $dtt['entry3id']);
+                }
+            } else {
+                array_push($identry1, null);
+                array_push($identry2, null);
+                array_push($identry3, null);
+            }
+        }
+        // Data entry
+        $dataEntry1 = [];
+        $dataEntry2 = [];
+        $dataEntry3 = [];
+
+        // data on
+        $dataon1 = [];
+        $dataon2 = [];
+        $dataon3 = [];
+
+        foreach ($identry1 as $iden1) {
+            $dten = $this->entryModel->where([
+                'id' => $iden1
+            ])->findAll();
+
+            if ($dten != null) {
+                foreach ($dten as $dten) {
+                    array_push($dataEntry1, $dten);
+                    array_push($dataon1, $dten);
+                }
+            } else {
+                array_push($dataEntry1, $dten);
+            }
+        }
+
+
+        foreach ($identry2 as $iden2) {
+            $dten = $this->entryModel->where([
+                'id' => $iden2
+            ])->findAll();
+
+            if ($dten != null) {
+                foreach ($dten as $dten) {
+                    array_push($dataEntry2, $dten);
+                    array_push($dataon2, $dten);
+                }
+            } else {
+                array_push($dataEntry2, $dten);
+            }
+        }
+
+        foreach ($identry3 as $iden3) {
+            $dten = $this->entryModel->where([
+                'id' => $iden3
+            ])->findAll();
+
+            if ($dten != null) {
+                foreach ($dten as $dten) {
+                    array_push($dataEntry3, $dten);
+                    array_push($dataon3, $dten);
+                }
+            } else {
+                array_push($dataEntry3, $dten);
+            }
+        }
+
+        // d($dataon2);
+        // dd($dataEntry2);
+
+        // --------------------- HARUS TETEP DIJAGA ----------
         $roman = ['I', 'II', 'III', 'IV', 'V'];
         $pro = $roman[$period - 1];
 
@@ -336,13 +401,16 @@ class Main extends BaseController
             'title' => 'Monitor Data',
             'cat' => 3,
             'stadata' => $stadata[0],
-            'hari' => $hari,
-            'entry1' => $dt_entry1,
-            'entry2' => $dt_entry2,
-            'entry3' => $dt_entry3,
+            'hari' => $tgl,
+            'dataEntry1' => $dataEntry1,
+            'dataEntry2' => $dataEntry2,
+            'dataEntry3' => $dataEntry3,
             'dt_utama' => $data_utama,
             'pro' => $pro,
-            'minggu' => $minggu
+            'minggu' => $minggu,
+            'dataon1' => $dataon1,
+            'dataon2' => $dataon2,
+            'dataon3' => $dataon3
         ];
         return view('pages/detail', $data);
     }

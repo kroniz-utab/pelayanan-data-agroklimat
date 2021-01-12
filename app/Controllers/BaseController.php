@@ -15,6 +15,7 @@ namespace App\Controllers;
  * @package CodeIgniter
  */
 
+use App\Models\DynamicModel;
 use App\Models\EntryModel;
 use App\Models\StasiunModel;
 use App\Models\UtamaModel;
@@ -50,7 +51,9 @@ class BaseController extends Controller
 		$this->mainModel = new UtamaModel();
 		$this->stasiunModel = new StasiunModel();
 		$this->waktuModel = new WaktuModel();
+		$this->dynamicModel = new DynamicModel();
 		$this->db = \Config\Database::connect();
+		$this->pager = \Config\Services::pager();
 		session();
 	}
 }

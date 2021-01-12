@@ -44,7 +44,7 @@
                             </div>
                         </div>
                     </div>
-                    <table class="table table-primary table-striped text-center">
+                    <table class="table table-striped text-center">
                         <thead>
                             <tr>
                                 <th scope="col">Periode</th>
@@ -56,7 +56,7 @@
                         <tbody>
                             <?php for ($i = 1; $i < 53; $i++) : ?>
                                 <tr>
-                                    <th scope="row"><?= $period; ?></th>
+                                    <td scope="row"><?= $period; ?></td>
                                     <td><?= $i; ?></td>
                                     <td><?= $dttot[$i - 1]; ?>/<?= ($i == 52) ? '8' : '7'; ?></td>
                                     <td>

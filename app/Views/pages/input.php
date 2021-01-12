@@ -5,12 +5,22 @@
 <div class="container">
     <div class="row">
         <div class="col">
-            <div class="card mt-3 mb-5">
+            <div class="card my-2">
                 <div class="card-body">
                     <form action="/input/get-form" method="GET">
                         <?= csrf_field(); ?>
                         <div class="form-group row">
                             <h3 class="mb-3">Input Data Agroklimat</h3>
+                            <?php if (session()->getFlashData('fail')) : ?>
+                                <div class="alert alert-danger" role="alert">
+                                    <?= session()->getFlashData('fail'); ?>
+                                </div>
+                            <?php endif; ?>
+                            <?php if (session()->getFlashData('success')) : ?>
+                                <div class="alert alert-success" role="alert">
+                                    <?= session()->getFlashData('success'); ?>
+                                </div>
+                            <?php endif; ?>
                             <div class="col">
                                 <h5 class="fs-6">Stasiun</h5>
                                 <select class="form-select <?= ($validation->hasError('stasiun')) ? 'is-invalid' : ''; ?>" name="stasiun">
@@ -33,11 +43,17 @@
                             </div>
                             <div class="col-2">
                                 <h5 class="fs-6">Minggu</h5>
-                                <select class="form-select <?= ($validation->hasError('minggu')) ? 'is-invalid' : ''; ?>" name="minggu">
+                                <select class="form-select <?= ($validation->hasError('minggu')) ? 'is-invalid' : ''; ?>" name="minggu" id="minggu_input">
                                     <option selected>--- Minggu ---</option>
                                     <?php for ($i = 1; $i < 53; $i++) : ?>
                                         <option value="<?= $i; ?>"><?= $i; ?></option>
                                     <?php endfor; ?>
+                                </select>
+                            </div>
+                            <div class="col-2">
+                                <h5 class="fs-6">Tanggal</h5>
+                                <select class="form-select <?= ($validation->hasError('tanggal')) ? 'is-invalid' : ''; ?>" name="tanggal" id="tanggal_input">
+                                    <option value="">--- Tanggal ---</option>
                                 </select>
                             </div>
                             <div class="col-2">
