@@ -17,7 +17,7 @@
                                 </div>
                             <?php endif; ?>
                             <?php if (session()->getFlashData('success')) : ?>
-                                <div class="alert alert-success" role="alert">
+                                <div class="alert alert-success" role="success">
                                     <?= session()->getFlashData('success'); ?>
                                 </div>
                             <?php endif; ?>

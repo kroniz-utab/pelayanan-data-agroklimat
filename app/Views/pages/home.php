@@ -70,7 +70,7 @@
         <hr class="divider">
         <div class="row">
             <div class="col-md-5">
-                <img src="\img\konten-2.jpg" alt="Konten 1" height="500" width="500" class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto">
+                <img src="\img\konten-2.jpg" alt="Konten 2" height="500" width="500" class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto">
             </div>
             <div class="col-md-7">
                 <h2 class="featurette-heading align-middle text-capitalize">
@@ -90,7 +90,7 @@
                 <p class="par-content">Data agrometeorologi digunakan untuk menjelaskan efek-efek kaitan parameter meteorologi secara sains dan untuk membantu petani atau pelaku pertanian dalam menerapkan pengetahuan dan informasi untuk mendukung usahanya secara agrometeorologis.</p>
             </div>
             <div class="col-md-5">
-                <img src="\img\konten-4.jpg" alt="Konten 1" height="500" width="500" class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto">
+                <img src="\img\konten-4.jpg" alt="Konten 3" height="500" width="500" class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto">
             </div>
         </div>
     </div>
