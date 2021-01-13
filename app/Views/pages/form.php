@@ -34,7 +34,7 @@
                             <div class="col-2">
                                 <h5 class="fs-6">Jam Peng.</h5>
                                 <input type="text" class="form-control" value="<?= $jampeng; ?>" disabled>
-                                <input type="hidden" class="form-control" value="<?= $jampeng; ?>" name="jampeng">
+                                <input type="hidden" class="form-control" value="<?= $jpeng; ?>" name="jpeng">
                             </div>
                         </div>
                         <div class="form-group row mt-5 mb-3">
